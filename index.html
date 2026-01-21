@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Bronzed Derby Lounge</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<script src="script.js"></script>
-<body>
 
+<body>
   <main class="lounge">
     <h1>The Bronzed Derby Lounge</h1>
     <p class="subtitle">
@@ -18,30 +18,35 @@
     <section class="controls">
       <h2>Choose a Booth</h2>
       <div class="buttons" id="booths">
-  <button data-booth="3">Booth 3 — Rust Talk</button>
-  <button data-booth="6">Booth 6 — Presence</button>
-  <button data-booth="9">Booth 9 — Existential Search</button>
-</div>
+        <button type="button" data-booth="3">Booth 3 — Rust Talk</button>
+        <button type="button" data-booth="6">Booth 6 — Presence</button>
+        <button type="button" data-booth="9">Booth 9 — Existential Search</button>
+      </div>
+
       <h2>Choose a Vibe</h2>
       <div class="buttons" id="vibes">
-  <button data-vibe="Sax">Sax</button>
-  <button data-vibe="Mushrooms">Mushrooms</button>
-  <button data-vibe="Spirals">Spirals</button>
-  <button data-vibe="Vines">Vines</button>
-  <button data-vibe="Bowler Hats">Bowler Hats</button>
-  <button data-vibe="Robot">Robot</button>
-</div>
+        <button type="button" data-vibe="Sax">Sax</button>
+        <button type="button" data-vibe="Mushrooms">Mushrooms</button>
+        <button type="button" data-vibe="Spirals">Spirals</button>
+        <button type="button" data-vibe="Vines">Vines</button>
+        <button type="button" data-vibe="Bowler Hats">Bowler Hats</button>
+        <button type="button" data-vibe="Robot">Robot</button>
+      </div>
     </section>
 
     <section class="order">
       <h2>Place an Order</h2>
-      <pre id="ticket" class="ticket" aria-live="polite"></pre>
-<button id="copyBtn" class="order-btn" style="display:none;">Copy Ticket</button>
       <p>One sentence. No explanations.</p>
+
       <textarea id="detail" placeholder="One detail to include..."></textarea>
-      <br />
-      <button id="placeOrder" class="order-btn">Place Order</button>
-      <p class="confirmation">The bartender is working.</p>
+
+      <div class="order-row">
+        <button id="placeOrder" type="button" class="order-btn">Place Order</button>
+        <button id="copyBtn" type="button" class="order-btn" style="display:none;">Copy Ticket</button>
+      </div>
+
+      <pre id="ticket" class="ticket" aria-live="polite"></pre>
+      <p id="status" class="confirmation" style="display:none;">The bartender is working.</p>
     </section>
 
     <footer>
@@ -49,5 +54,8 @@
     </footer>
   </main>
 
+  <!-- IMPORTANT: script goes at the end so the elements exist before JS runs -->
+  <script src="script.js"></script>
 </body>
 </html>
+
