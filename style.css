@@ -1,98 +1,71 @@
-/* Bronzed Derby Lounge — v0.2 style pack */
-
 :root{
-  --bg-0:#070a09;         /* near-black */
-  --bg-1:#0b1410;         /* deep green-black */
-  --jade:#0f6b4b;         /* resonance green (meaningful, not everywhere) */
-  --jade-2:#16a574;       /* brighter accent */
-  --bronze:#b08a4a;       /* warm bronze */
-  --rust:#8b2f2a;         /* lived-in rust red */
-  --ink:#e9e6dc;          /* parchment ink */
+  --bg0:#070a09;
+  --bg1:#07140f;
+
+  --ink:#e9e6dc;
   --muted:#b9b4a6;
-  --glass:rgba(10,18,14,.72);
-  --line:rgba(233,230,220,.12);
-  --glow:rgba(22,165,116,.35);
-  --shadow: 0 18px 60px rgba(0,0,0,.55);
-  --radius: 18px;
+
+  --jade:#16a574;      /* resonance */
+  --bronze:#b08a4a;    /* warm metal */
+  --rust:#8b2f2a;      /* lived-in accent */
+
+  --panel: rgba(12, 18, 14, 0.78);
+  --line: rgba(233,230,220,.12);
+  --shadow: 0 16px 44px rgba(0,0,0,.55);
+  --radius: 16px;
 }
 
 *{ box-sizing:border-box; }
 html,body{ height:100%; }
+
 body{
   margin:0;
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-  color:var(--ink);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  color: var(--ink);
   background:
-    radial-gradient(1200px 800px at 30% 10%, rgba(22,165,116,.12), transparent 55%),
-    radial-gradient(900px 700px at 80% 30%, rgba(176,138,74,.12), transparent 60%),
-    linear-gradient(180deg, var(--bg-0), var(--bg-1));
-}
-
-/* Optional hero image */
-body::before{
-  content:"";
-  position:fixed; inset:0;
-  background:
-    linear-gradient(180deg, rgba(0,0,0,.72), rgba(0,0,0,.88)),
-    url("assets/derby-hero.jpg");
-  background-size:cover;
-  background-position:center;
-  opacity:.55;
-  pointer-events:none;
-  z-index:-2;
-}
-
-/* Optional texture overlay */
-body::after{
-  content:"";
-  position:fixed; inset:0;
-  background:url("assets/patina.png");
-  opacity:.10;
-  mix-blend-mode:overlay;
-  pointer-events:none;
-  z-index:-1;
+    radial-gradient(900px 600px at 20% 10%, rgba(22,165,116,.14), transparent 60%),
+    radial-gradient(900px 600px at 85% 25%, rgba(176,138,74,.10), transparent 60%),
+    radial-gradient(900px 600px at 60% 95%, rgba(139,47,42,.08), transparent 60%),
+    linear-gradient(180deg, var(--bg0), var(--bg1));
 }
 
 .lounge{
-  max-width: 960px;
+  max-width: 920px;
   margin: 0 auto;
-  padding: 42px 18px 54px;
+  padding: 38px 16px 60px;
+}
+
+.header{
+  margin-bottom: 16px;
 }
 
 h1{
   margin: 0 0 8px;
-  font-size: clamp(32px, 5vw, 54px);
-  letter-spacing: .3px;
-  text-shadow: 0 2px 20px rgba(0,0,0,.55);
+  font-size: clamp(32px, 5vw, 52px);
+  letter-spacing: .2px;
 }
 
 .subtitle{
-  margin: 0 0 28px;
+  margin: 0;
   color: var(--muted);
   line-height: 1.5;
 }
 
-section{
-  background: var(--glass);
+.panel{
+  background: var(--panel);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 18px;
   box-shadow: var(--shadow);
-  backdrop-filter: blur(8px);
+  margin-top: 14px;
 }
-
-.controls{ margin-bottom: 16px; }
-.order{ margin-top: 16px; }
 
 h2{
   margin: 6px 0 10px;
   font-size: 16px;
-  font-weight: 650;
-  letter-spacing:.2px;
-  color: rgba(233,230,220,.92);
+  font-weight: 700;
 }
 
-/* Button grid */
 .buttons{
   display:flex;
   flex-wrap:wrap;
@@ -101,44 +74,37 @@ h2{
 }
 
 .buttons button{
-  appearance:none;
-  border:1px solid rgba(233,230,220,.14);
-  background: rgba(0,0,0,.22);
+  border: 1px solid rgba(233,230,220,.14);
+  background: rgba(0,0,0,.24);
   color: var(--ink);
   padding: 10px 12px;
   border-radius: 999px;
   cursor:pointer;
-  transition: transform .06s ease, border-color .2s ease, background .2s ease, box-shadow .2s ease;
-  position:relative;
-  overflow:hidden;
+  transition: transform .06s ease, box-shadow .2s ease, border-color .2s ease, filter .2s ease;
 }
 
 .buttons button:hover{
-  border-color: rgba(22,165,116,.35);
-  box-shadow: 0 0 0 3px rgba(22,165,116,.12);
   transform: translateY(-1px);
+  border-color: rgba(22,165,116,.30);
+  box-shadow: 0 0 0 3px rgba(22,165,116,.10);
 }
 
 .buttons button.active{
   border-color: rgba(22,165,116,.55);
-  box-shadow: 0 0 0 3px rgba(22,165,116,.16), 0 0 24px rgba(22,165,116,.18);
+  box-shadow: 0 0 0 3px rgba(22,165,116,.14);
+  filter: brightness(1.06);
 }
 
-/* Resonance marker: subtle green glint that “selects” */
-.buttons button.active::after{
-  content:"";
-  position:absolute; inset:-40%;
-  background: radial-gradient(circle at 30% 30%, rgba(22,165,116,.28), transparent 55%);
-  transform: rotate(8deg);
-  pointer-events:none;
+.hint{
+  margin: 0 0 10px;
+  color: rgba(233,230,220,.75);
 }
 
-/* Order UI */
 textarea{
   width:100%;
   min-height: 90px;
-  padding: 12px 12px;
-  border-radius: 14px;
+  padding: 12px;
+  border-radius: 12px;
   border: 1px solid rgba(233,230,220,.14);
   background: rgba(0,0,0,.25);
   color: var(--ink);
@@ -156,65 +122,59 @@ textarea:focus{
   gap:10px;
   align-items:center;
   margin-top: 12px;
+  flex-wrap:wrap;
 }
 
 .order-btn{
   border:none;
-  border-radius: 14px;
+  border-radius: 12px;
   padding: 10px 14px;
   cursor:pointer;
-  font-weight: 650;
+  font-weight: 750;
   letter-spacing:.2px;
-  transition: transform .06s ease, filter .2s ease, box-shadow .2s ease;
+  transition: transform .06s ease, box-shadow .2s ease;
 }
 
-/* Primary = bronze with controlled jade glow */
-#placeOrder{
-  background: linear-gradient(180deg, rgba(176,138,74,.95), rgba(140,96,34,.95));
-  color: #120c06;
-  box-shadow: 0 10px 30px rgba(0,0,0,.35);
-}
-
-#placeOrder:hover{
-  box-shadow: 0 0 0 3px rgba(22,165,116,.14), 0 14px 38px rgba(0,0,0,.45);
+.order-btn:hover{
   transform: translateY(-1px);
 }
 
-#copyBtn{
-  background: linear-gradient(180deg, rgba(15,107,75,.95), rgba(10,70,49,.95));
-  color: var(--ink);
-  box-shadow: 0 10px 30px rgba(0,0,0,.35);
+#placeOrder{
+  background: linear-gradient(180deg, rgba(176,138,74,.96), rgba(140,96,34,.96));
+  color: #120c06;
+  box-shadow: 0 10px 28px rgba(0,0,0,.35);
 }
 
-#copyBtn:hover{ transform: translateY(-1px); }
+.order-btn.secondary{
+  background: linear-gradient(180deg, rgba(22,165,116,.86), rgba(15,107,75,.86));
+  color: var(--ink);
+  box-shadow: 0 10px 28px rgba(0,0,0,.35);
+}
+
+.confirmation{
+  margin: 10px 0 0;
+  color: rgba(139,47,42,.95);
+  min-height: 1.2em;
+}
 
 .ticket{
-  margin-top: 14px;
-  padding: 14px;
-  border-radius: 16px;
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 12px;
   border: 1px solid rgba(233,230,220,.12);
-  background: rgba(0,0,0,.28);
-  color: rgba(233,230,220,.92);
-  line-height: 1.45;
+  background: rgba(0,0,0,.22);
   min-height: 56px;
+  white-space: pre-wrap;
+  line-height: 1.45;
 }
 
-/* Confirmation as a small, lived-in rust whisper */
-.confirmation{
-  margin-top: 10px;
-  color: rgba(139,47,42,.95);
-  letter-spacing:.15px;
-}
-
-footer{
+.footer{
   margin-top: 18px;
   text-align:center;
-  color: rgba(233,230,220,.62);
+  color: rgba(233,230,220,.60);
   font-size: 13px;
-  opacity: .92;
 }
 
-/* Mobile niceness */
 @media (max-width:520px){
   .order-row{ flex-direction:column; align-items:stretch; }
   .order-btn{ width:100%; }
