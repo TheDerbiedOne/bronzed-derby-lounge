@@ -4,8 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bronzed Derby Lounge</title>
-
-  <!-- CSS -->
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -17,21 +15,18 @@
         A listening room inside Singaw Sity.<br />
         Every order becomes a scene.
       </p>
-      <p class="meta">
-        Output: Text Scene + Image Prompt + <strong>Suno Prompt (Music + Lyrics)</strong>
-      </p>
     </header>
 
-    <section class="panel controls" aria-label="Order controls">
+    <section class="panel controls">
       <h2>Choose a Booth</h2>
-      <div class="buttons" id="booths" role="group" aria-label="Booth selection">
+      <div class="buttons" id="booths">
         <button type="button" data-booth="3">Booth 3 — Rust Talk</button>
         <button type="button" data-booth="6">Booth 6 — Presence</button>
         <button type="button" data-booth="9">Booth 9 — Existential Search</button>
       </div>
 
       <h2>Choose a Vibe</h2>
-      <div class="buttons" id="vibes" role="group" aria-label="Vibe selection">
+      <div class="buttons" id="vibes">
         <button type="button" data-vibe="Sax">Sax</button>
         <button type="button" data-vibe="Mushrooms">Mushrooms</button>
         <button type="button" data-vibe="Spirals">Spirals</button>
@@ -41,17 +36,15 @@
       </div>
     </section>
 
-    <section class="panel order" aria-label="Order ticket">
+    <section class="panel order">
       <h2>Place an Order</h2>
 
       <p class="hint">One sentence. No explanations.</p>
-      <textarea id="detail" placeholder="One detail to include..." rows="3"></textarea>
+      <textarea id="detail" placeholder="One detail to include..."></textarea>
 
       <div class="order-row">
         <button id="placeOrder" class="order-btn" type="button">Place Order</button>
-        <button id="copyBtn" class="order-btn secondary" type="button" style="display:none;">
-          Copy Ticket
-        </button>
+        <button id="copyBtn" class="order-btn secondary" type="button" style="display:none;">Copy Ticket</button>
       </div>
 
       <p class="confirmation" id="confirmText" aria-live="polite"></p>
@@ -64,7 +57,6 @@
     </footer>
   </main>
 
-  <!-- JS -->
   <script src="script.js"></script>
 </body>
 </html>
