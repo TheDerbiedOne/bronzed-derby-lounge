@@ -1,181 +1,224 @@
+/* =========================
+   Bronzed Derby Lounge — style.css
+   Singaw vibe: bronze + night + meaningful green + rust patina
+   ========================= */
+
 :root{
-  --bg0:#070a09;
-  --bg1:#07140f;
-
-  --ink:#e9e6dc;
-  --muted:#b9b4a6;
-
-  --jade:#16a574;      /* resonance */
-  --bronze:#b08a4a;    /* warm metal */
-  --rust:#8b2f2a;      /* lived-in accent */
-
-  --panel: rgba(12, 18, 14, 0.78);
-  --line: rgba(233,230,220,.12);
-  --shadow: 0 16px 44px rgba(0,0,0,.55);
-  --radius: 16px;
+  --bg0:#070a08;           /* deep night */
+  --bg1:#0c120f;           /* moss-shadow */
+  --panel:#0e1511cc;       /* translucent dark */
+  --panel-solid:#0e1511;
+  --text:#e9f1ea;          /* soft light */
+  --muted:#b9c7bd;         /* fog */
+  --bronze:#a9763a;        /* warm bronze */
+  --bronze2:#c08a45;
+  --rust:#8a3b2f;          /* lived patina */
+  --green:#1fbf6b;         /* resonance (used sparingly) */
+  --green2:#0c7c45;
+  --line:#1b2a21;          /* border line */
+  --shadow: 0 12px 40px rgba(0,0,0,.55);
+  --radius: 18px;
+  --radius2: 12px;
+  --focus: 0 0 0 3px rgba(31,191,107,.25);
+  --font: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
 *{ box-sizing:border-box; }
 html,body{ height:100%; }
-
 body{
   margin:0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-  color: var(--ink);
+  font-family: var(--font);
+  color: var(--text);
   background:
-    radial-gradient(900px 600px at 20% 10%, rgba(22,165,116,.14), transparent 60%),
-    radial-gradient(900px 600px at 85% 25%, rgba(176,138,74,.10), transparent 60%),
-    radial-gradient(900px 600px at 60% 95%, rgba(139,47,42,.08), transparent 60%),
+    radial-gradient(1200px 900px at 30% -10%, rgba(31,191,107,.12), transparent 55%),
+    radial-gradient(900px 700px at 80% 10%, rgba(169,118,58,.16), transparent 55%),
     linear-gradient(180deg, var(--bg0), var(--bg1));
 }
 
 .lounge{
   max-width: 920px;
   margin: 0 auto;
-  padding: 38px 16px 60px;
+  padding: 28px 18px 46px;
 }
 
 .header{
-  margin-bottom: 16px;
+  text-align:center;
+  margin: 10px auto 22px;
 }
 
-h1{
-  margin: 0 0 8px;
-  font-size: clamp(32px, 5vw, 52px);
-  letter-spacing: .2px;
+.header h1{
+  margin:0 0 8px;
+  font-weight: 800;
+  letter-spacing: .4px;
+  color: var(--text);
+  text-shadow: 0 10px 30px rgba(0,0,0,.55);
 }
 
 .subtitle{
-  margin: 0;
+  margin:0 auto 10px;
   color: var(--muted);
-  line-height: 1.5;
+  line-height: 1.35;
+}
+
+.meta{
+  margin: 0 auto;
+  max-width: 560px;
+  color: rgba(233,241,234,.82);
+  font-size: 0.95rem;
+  line-height: 1.35;
+}
+.meta strong{
+  color: var(--green);
+  font-weight: 800;
 }
 
 .panel{
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 18px;
+  background: linear-gradient(180deg, rgba(14,21,17,.88), rgba(10,14,12,.88));
+  border: 1px solid rgba(27,42,33,.9);
   box-shadow: var(--shadow);
-  margin-top: 14px;
+  border-radius: var(--radius);
+  padding: 18px 16px;
+  margin: 14px 0;
+  backdrop-filter: blur(10px);
 }
 
-h2{
+.panel h2{
+  margin: 0 0 10px;
+  font-size: 1.05rem;
+  letter-spacing: .2px;
+}
+
+.hint{
   margin: 6px 0 10px;
-  font-size: 16px;
-  font-weight: 700;
+  color: rgba(233,241,234,.75);
+}
+
+textarea{
+  width: 100%;
+  resize: vertical;
+  border-radius: var(--radius2);
+  border: 1px solid rgba(27,42,33,.95);
+  background: rgba(6,10,8,.7);
+  color: var(--text);
+  padding: 12px 12px;
+  outline: none;
+  line-height: 1.4;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,.2);
+}
+textarea:focus{
+  box-shadow: var(--focus);
+  border-color: rgba(31,191,107,.55);
 }
 
 .buttons{
   display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-bottom: 14px;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 10px 0 16px;
+}
+
+button{
+  font-family: inherit;
 }
 
 .buttons button{
-  border: 1px solid rgba(233,230,220,.14);
-  background: rgba(0,0,0,.24);
-  color: var(--ink);
-  padding: 10px 12px;
   border-radius: 999px;
-  cursor:pointer;
-  transition: transform .06s ease, box-shadow .2s ease, border-color .2s ease, filter .2s ease;
+  border: 1px solid rgba(27,42,33,.95);
+  background: rgba(8,12,10,.65);
+  color: rgba(233,241,234,.9);
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: transform .08s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
+  letter-spacing: .1px;
 }
-
 .buttons button:hover{
   transform: translateY(-1px);
-  border-color: rgba(22,165,116,.30);
-  box-shadow: 0 0 0 3px rgba(22,165,116,.10);
+  border-color: rgba(31,191,107,.35);
 }
-
-.buttons button.active{
-  border-color: rgba(22,165,116,.55);
-  box-shadow: 0 0 0 3px rgba(22,165,116,.14);
-  filter: brightness(1.06);
-}
-
-.hint{
-  margin: 0 0 10px;
-  color: rgba(233,230,220,.75);
-}
-
-textarea{
-  width:100%;
-  min-height: 90px;
-  padding: 12px;
-  border-radius: 12px;
-  border: 1px solid rgba(233,230,220,.14);
-  background: rgba(0,0,0,.25);
-  color: var(--ink);
+.buttons button:focus{
   outline: none;
-  resize: vertical;
+  box-shadow: var(--focus);
 }
 
-textarea:focus{
-  border-color: rgba(22,165,116,.45);
-  box-shadow: 0 0 0 3px rgba(22,165,116,.12);
+/* The “stay colored” state (JS will add .active) */
+.buttons button.active{
+  background: linear-gradient(180deg, rgba(31,191,107,.20), rgba(12,124,69,.12));
+  border-color: rgba(31,191,107,.75);
+  box-shadow: 0 0 0 1px rgba(31,191,107,.18), 0 14px 40px rgba(0,0,0,.45);
+  color: var(--text);
+}
+
+/* Booth and Vibe can have slightly different accent glows */
+#booths button.active{
+  background: linear-gradient(180deg, rgba(169,118,58,.22), rgba(138,59,47,.10));
+  border-color: rgba(169,118,58,.75);
+  box-shadow: 0 0 0 1px rgba(169,118,58,.18), 0 14px 40px rgba(0,0,0,.45);
+}
+#vibes button.active{
+  background: linear-gradient(180deg, rgba(31,191,107,.22), rgba(12,124,69,.12));
+  border-color: rgba(31,191,107,.75);
 }
 
 .order-row{
   display:flex;
-  gap:10px;
-  align-items:center;
-  margin-top: 12px;
-  flex-wrap:wrap;
+  gap: 10px;
+  margin: 12px 0 10px;
+  flex-wrap: wrap;
 }
 
 .order-btn{
-  border:none;
   border-radius: 12px;
-  padding: 10px 14px;
-  cursor:pointer;
-  font-weight: 750;
-  letter-spacing:.2px;
-  transition: transform .06s ease, box-shadow .2s ease;
+  border: 1px solid rgba(27,42,33,.95);
+  background: linear-gradient(180deg, rgba(169,118,58,.22), rgba(10,14,12,.72));
+  color: var(--text);
+  padding: 11px 14px;
+  cursor: pointer;
+  transition: transform .08s ease, box-shadow .18s ease, border-color .18s ease;
+  font-weight: 700;
 }
-
 .order-btn:hover{
   transform: translateY(-1px);
+  border-color: rgba(169,118,58,.85);
 }
-
-#placeOrder{
-  background: linear-gradient(180deg, rgba(176,138,74,.96), rgba(140,96,34,.96));
-  color: #120c06;
-  box-shadow: 0 10px 28px rgba(0,0,0,.35);
+.order-btn:focus{
+  outline:none;
+  box-shadow: var(--focus);
 }
-
 .order-btn.secondary{
-  background: linear-gradient(180deg, rgba(22,165,116,.86), rgba(15,107,75,.86));
-  color: var(--ink);
-  box-shadow: 0 10px 28px rgba(0,0,0,.35);
+  background: linear-gradient(180deg, rgba(31,191,107,.16), rgba(10,14,12,.72));
+  border-color: rgba(31,191,107,.55);
+  font-weight: 700;
 }
 
 .confirmation{
-  margin: 10px 0 0;
-  color: rgba(139,47,42,.95);
+  margin: 8px 0 10px;
+  color: rgba(233,241,234,.82);
   min-height: 1.2em;
 }
 
+/* Ticket output */
 .ticket{
-  margin-top: 12px;
-  padding: 12px;
-  border-radius: 12px;
-  border: 1px solid rgba(233,230,220,.12);
-  background: rgba(0,0,0,.22);
-  min-height: 56px;
+  margin: 12px 0 0;
+  padding: 14px 14px;
+  border-radius: var(--radius2);
+  background: rgba(0,0,0,.35);
+  border: 1px solid rgba(27,42,33,.95);
+  overflow-x: auto;
   white-space: pre-wrap;
   line-height: 1.45;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,.25);
 }
 
+/* Footer */
 .footer{
   margin-top: 18px;
   text-align:center;
-  color: rgba(233,230,220,.60);
-  font-size: 13px;
+  color: rgba(233,241,234,.65);
 }
 
-@media (max-width:520px){
-  .order-row{ flex-direction:column; align-items:stretch; }
-  .order-btn{ width:100%; }
+/* Mobile comfort */
+@media (max-width: 560px){
+  .panel{ padding: 16px 14px; }
+  .buttons button{ width: 100%; text-align:center; }
+  .order-btn{ width: 100%; }
 }
