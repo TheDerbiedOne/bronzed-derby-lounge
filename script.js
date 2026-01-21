@@ -1,52 +1,72 @@
 let selectedBooth = null;
 let selectedVibe = null;
 
-function setActive(containerId, datasetKey, value) {
-  const container = document.getElementById(containerId);
-  const buttons = container.querySelectorAll("button");
-  buttons.forEach(btn => {
-    btn.classList.toggle("active", btn.dataset[datasetKey] === value);
-  });
+const boothButtons = document.querySelectorAll("#booths button");
+const vibeButtons = document.querySelectorAll("#vibes button");
+
+const detailEl = document.getElementById("detail");
+const ticketEl = document.getElementById("ticket");
+const placeOrderBtn = document.getElementById("placeOrder");
+const copyBtn = document.getElementById("copyBtn");
+const confirmText = document.getElementById("confirmText");
+
+function setActive(buttons, target){
+  buttons.forEach(b => b.classList.remove("active"));
+  target.classList.add("active");
 }
 
-document.getElementById("booths").addEventListener("click", (e) => {
-  const btn = e.target.closest("button");
-  if (!btn) return;
-  selectedBooth = btn.dataset.booth;
-  setActive("booths", "booth", selectedBooth);
+boothButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    selectedBooth = btn.dataset.booth;
+    setActive(boothButtons, btn);
+    confirmText.textContent = "";
+  });
 });
 
-document.getElementById("vibes").addEventListener("click", (e) => {
-  const btn = e.target.closest("button");
-  if (!btn) return;
-  selectedVibe = btn.dataset.vibe;
-  setActive("vibes", "vibe", selectedVibe);
+vibeButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    selectedVibe = btn.dataset.vibe;
+    setActive(vibeButtons, btn);
+    confirmText.textContent = "";
+  });
 });
 
-document.getElementById("placeOrder").addEventListener("click", () => {
-  const detail = document.getElementById("detail").value.trim();
+function buildTicket(){
+  const detail = (detailEl.value || "").trim();
+  return `Booth: ${selectedBooth || "(pick one)"}\nVibe: ${selectedVibe || "(pick one)"}\nDetail: ${detail || "(add one sentence)"}`;
+}
 
-  if (!selectedBooth || !selectedVibe || !detail) {
-    alert("Pick a booth, pick a vibe, and add one sentence.");
+placeOrderBtn.addEventListener("click", () => {
+  const detail = (detailEl.value || "").trim();
+
+  if(!selectedBooth || !selectedVibe){
+    confirmText.textContent = "Pick a Booth and a Vibe first.";
+    return;
+  }
+  if(detail.length === 0){
+    confirmText.textContent = "Add one sentence in the detail box.";
     return;
   }
 
-  const ticketText =
-`Booth: ${selectedBooth}
-Vibe: ${selectedVibe}
-Detail: ${detail}`;
+  const ticket = buildTicket();
+  ticketEl.textContent = ticket;
 
-  document.getElementById("ticket").textContent = ticketText;
-  document.getElementById("copyBtn").style.display = "inline-block";
-  document.getElementById("status").style.display = "block";
+  copyBtn.style.display = "inline-block";
+  confirmText.textContent = "Order received. The bartender is working.";
 });
 
-document.getElementById("copyBtn").addEventListener("click", async () => {
-  const text = document.getElementById("ticket").textContent;
-  try {
+copyBtn.addEventListener("click", async () => {
+  const text = ticketEl.textContent.trim();
+  if(!text){
+    confirmText.textContent = "No ticket to copy yet.";
+    return;
+  }
+
+  try{
     await navigator.clipboard.writeText(text);
-    alert("Ticket copied. Paste it into the Bronzed Derby chat.");
-  } catch {
-    alert("Couldn’t auto-copy. Manually select the ticket text and copy it.");
+    confirmText.textContent = "Ticket copied. Paste it into ChatGPT (or your House Generator prompt).";
+  }catch(e){
+    // Fallback if clipboard permission fails
+    confirmText.textContent = "Copy failed. Select the ticket text and copy manually.";
   }
 });
